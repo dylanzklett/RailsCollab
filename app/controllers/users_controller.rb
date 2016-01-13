@@ -10,13 +10,14 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
+      session[:user_id] = @user.id
   		redirect_to user_path @user
     end
   end
 
   def show
     @user = User.find(params[:id])
-  end
+    @posts = Post.where(params[:user]).reverse.first(10)
 
   def update
   	@user = User.find(params[:id])
