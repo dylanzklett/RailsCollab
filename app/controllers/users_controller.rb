@@ -3,12 +3,14 @@ class UsersController < ApplicationController
   end
 
   def new
+  	@user = User.new
   end
 
   def create
-  	@user=User.new)(params[:user])
+  	@user=User.new(params[:user])
   	if @user.save
   		redirect_to user_path @user
+  	end
   end
   def show
   end
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	if @user
   		@user.update(username: params[:username], password: params[:password])
+  	end
   end
 
 
@@ -26,6 +29,7 @@ class UsersController < ApplicationController
   		redirect_to root_path
   	else
   		redirect_to user_path
+  	end
   end
 
 
