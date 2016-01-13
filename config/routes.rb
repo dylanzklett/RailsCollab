@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'home#index'
+   
   get '/signup', to: "home#signup"
   get '/signin', to: "home#signin"
   get '/log-in', to: "sessions#new"
   post '/log-in', to: "sessions#create"
+
 
   get 'users/index'
 

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
   end
 
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
   		redirect_to user_path(@user)
   	end
   end
+
   def show
   	@user = User.find(params[:id])
   	@post = Post.new
@@ -34,12 +36,14 @@ class UsersController < ApplicationController
   		redirect_to root_path
   	else
   		redirect_to user_path
-  	end
+    end
   end
 
 
   private
+
   def user_params
   	params.require(:user).permit(:username, :password)
   end
+
 end
