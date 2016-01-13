@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
-
-  get '/log-in', to: 'sessions#new'
-  post '/log-in', to: 'sessions#create'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'home#index'
+   
+  get '/signup', to: "home#signup"
+  get '/signin', to: "home#signin"
+  get '/log-in', to: "sessions#new"
+  post '/log-in', to: "sessions#create"
 
-  get 'home/index'
 
   get 'users/index'
 
-  get 'posts/index'
+  get 'posts/edit/:id', to: "posts#edit"
+  post '/posts/:id', to: "posts#destroy"
 
 
   resources :users
