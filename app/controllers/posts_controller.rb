@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-  	@post = current_user.posts.build(post_params)
+  	@post = Post.new(post_params)
   		if @post.save
   			redirect_to user_path(current_user)
   		else
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
   def edit
   	@post = Post.find(params[:id])
-  	@user = @post.user
+  	@user = User.find(@post.user_id)
   end
   def update
   	@post = Post.find(params[:id])
@@ -35,6 +35,6 @@ class PostsController < ApplicationController
   end
   private 
   def post_params
-  	params.require(:post).permit(:title, :content)
+  	params.require(:post).permit(:title, :content).merge(user_id: current_user.id)
   end
 end
