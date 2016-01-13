@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   get '/signup', to: "home#signup"
   get '/signin', to: "home#signin"
   get '/log-in', to: "sessions#new"
+  post '/log-in', to: "sessions#create"
 
   get 'users/index'
 
-  get 'posts/index'
+  get 'posts/edit/:id', to: "posts#edit"
+  post '/posts/:id', to: "posts#destroy"
 
 
   resources :users

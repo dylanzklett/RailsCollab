@@ -1,0 +1,19 @@
+<h1>
+	Edit Post: <%=@post.title%>
+</h1>
+<h2>
+	Here, you can change the title and body of your posts.
+</h2>
+
+<%= form_for @post do |q| %>
+	<%=q.label :title %>
+	<%=q.text_field :title %>
+	<%=q.label :content %>
+	<%=q.text_field :content %>
+	<%=q.submit :Confirm %>
+	<% end %>
+<h3>
+	<%= link_to "Delete Post?", @post, method: :destroy %>
+</h3>
+
+<%= link_to "Return To User's Page", user_path(@user)%>

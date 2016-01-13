@@ -7,12 +7,16 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user=User.new(params[:user])
+  	@user = User.new(user_params)
   	if @user.save
-  		redirect_to user_path @user
+		session[:user_id] = @user.id
+  		redirect_to user_path(@user)
   	end
   end
   def show
+  	@user = User.find(params[:id])
+  	@post = Post.new
+  	@posts = Post.where(params[:user])
   end
 
   def update
@@ -26,6 +30,7 @@ class UsersController < ApplicationController
   def destroy
   	@user = User.find(params[:id])
   	if @user.destroy
+  		session.clear
   		redirect_to root_path
   	else
   		redirect_to user_path
@@ -35,6 +40,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-  	params.require (:user).permit(:username, :password)
+  	params.require(:user).permit(:username, :password)
   end
 end
