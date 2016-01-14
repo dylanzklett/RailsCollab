@@ -1,2 +1,29 @@
-<h1>Welcome <%= @user.username %>!</h1>
+<h1>Hello, <%=@user.username %>. What would you like to focus on today?</h1>
 
+<h2>New Sleak!</h2>
+<%= form_for @post do |x| %>
+	<%=x.label :title %>
+	<%=x.text_field :title %>
+	<%=x.label :content %>
+	<%=x.text_field :content %>
+	<%=x.submit :Post! %>
+<% end %>
+
+<h4>
+	Your Recent Posts:
+</h4>
+<h4>
+	<% @posts.each do |p| %>
+		<h4><em>Title:</em>  <%= p.title %><p></h4>
+		<h4><em>Body:</em>  <%= p.content %><p></h4>
+		<h5>
+			<%= link_to "Edit Post", edit_post_path(p.id) %>
+		</h5>
+<% end %>
+</h4>	
+
+
+
+<h3>
+	<%= link_to "Delete User?", @user, method: :delete %>
+</h3>

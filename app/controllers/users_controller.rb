@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+  	@user = User.new
   end
 
   def create
@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.where(params[:user]).reverse.first(10)
+		session[:user_id] = @user.id
+  		redirect_to user_path(@user)
+  	end
+  end
+
 
   def update
   	@user = User.find(params[:id])
@@ -31,6 +36,7 @@ class UsersController < ApplicationController
   def destroy
   	@user = User.find(params[:id])
   	if @user.destroy
+  		session.clear
   		redirect_to root_path
   	else
   		redirect_to user_path
