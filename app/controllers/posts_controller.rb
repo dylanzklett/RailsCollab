@@ -23,10 +23,9 @@ class PostsController < ApplicationController
   	@post.update(post_params)
   	@post.save
   	redirect_to user_path(@user)
->>>>>>> f02c658671cce328bf54a9c6562aa3d322f2bcbe
   end
-  def destroy
 
+  def destroy
   	@post = Post.find(params[:id])
 		if @post.destroy
 		else
@@ -34,13 +33,9 @@ class PostsController < ApplicationController
 		end
 		redirect_to user_path(current_user)
   end
+
   private 
   def post_params
-<<<<<<< HEAD
-  	params.require(:post).permit(:title, :body, :content)
-  end)
-=======
   	params.require(:post).permit(:title, :content).merge(user_id: current_user.id)
   end
->>>>>>> f02c658671cce328bf54a9c6562aa3d322f2bcbe
 end

@@ -17,10 +17,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(params[:user]).reverse.first(10)
-		session[:user_id] = @user.id
-  		redirect_to user_path(@user)
-  	end
+      @post = Post.new
+    @posts = Post.where(user_id: @user.id).reverse.first(10)
+	
   end
 
 
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	if @user
   		@user.update(username: params[:username], password: params[:password])
-      redirect_to user_path current_user
     end
   end
 
@@ -42,7 +40,6 @@ class UsersController < ApplicationController
   		redirect_to user_path
     end
   end
-
 
   private
 

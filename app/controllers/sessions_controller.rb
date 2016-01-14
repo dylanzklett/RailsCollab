@@ -10,6 +10,9 @@ class SessionsController < ApplicationController
   		redirect_to log_in_path
   	end
   end
-  def destroy
-  end
+  # def destroy
+  # 	@user = User.where(params[:id]).first 
+  # 	if current_user
+  # 	end
+  # end
 end

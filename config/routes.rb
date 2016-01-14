@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  get 'posts/edit/:id', to: "posts#edit"
+  get 'posts/update/:id', to: "posts#update"
   post '/posts/:id', to: "posts#destroy"
 
 
