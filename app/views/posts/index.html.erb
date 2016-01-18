@@ -1,2 +1,27 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<%= link_to "Logout?", logout_path %>
+
+<h1>The Sleak Forum</h1>
+
+<% @posts.each do |post| %>
+
+	<h1><%= link_to "#{post.title}", post_comments_path(post) %></h1>
+	<h3><%= post.content %></h3>
+	<h3>sleak em!</h3>
+	<% if post.comments.empty? %>
+		<h4></h4>
+	<% else %>
+		<% post.comments.each do |value| %>
+			<h5><%= "#{value.content}" %></h5>
+		<% end %>
+	<% end %>
+	<div>
+		<%= form_for([post, @comment]) do |c| %>
+			<h3><%= c.label :content %></h3>
+			<%= c.text_field :content %>
+			<%= c.submit :sleak %>
+		<% end %>
+	</div>
+<% end %>
+
+
+

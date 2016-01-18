@@ -1,11 +1,21 @@
 <h1>Hello, <%=@user.username %>. What would you like to focus on today?</h1>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @user.username %>'s Profile</h3>
+  </div>
+  <div class="panel-body">
+    <%= image_tag @user.avatar.url(:medium) %>
+  </div>
+</div>
+
+
 <h2>New Sleak!</h2>
 <%= form_for @post do |x| %>
 	<%=x.label :title %>
 	<%=x.text_field :title %>
 	<%=x.label :content %>
-	<%=x.text_field :content %>
+	<%=x.text_area :content, size: "60x12" %>
 	<%=x.submit :Post! %>
 <% end %>
 
@@ -22,8 +32,17 @@
 <% end %>
 </h4>	
 
+<h3>
+	<%= link_to "Home?", posts_path %>
+</h3>
 
+<h3>
+	<%= link_to "Logout?", logout_path %>
 
 <h3>
 	<%= link_to "Delete User?", @user, method: :delete %>
+</h3>
+
+<h3>
+	<%= link_to "Edit User?", edit_user_path %>
 </h3>

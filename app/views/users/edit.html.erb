@@ -1,11 +1,11 @@
 <h1>Edit User</h1>
 <h2>Here you can change your user's details!</h2>
 
-	<%= form_for @user do |f| %>
-	<%= f.label :username %>
-	<%= f.text_field :username %>
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-	<%= f.submit :update %>
-	
-<% end %>
+	<%= form_tag("/edit_user", method: "post", multipart: true)  %>
+		<%= label_tag(:q, 'username') %>
+		<%= text_field_tag(:username) %>
+		<%= label_tag(:avatar, 'upload your picture') %>
+		<%= file_field_tag(:avatar) %>
+		<%= label_tag(:password, 'create a new password') %>
+		<%= password_field_tag(:password) %>
+		<%= submit_tag(:submit) %>

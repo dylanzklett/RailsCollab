@@ -1,0 +1,12 @@
+<h1><%= @post.title %></h1>
+<h3><%= @post.content %></h3>
+<% @post.comments.each do |comment| %>
+	<h3><%= comment.content %></h3>
+	<% end %>
+<%= form_for [@post, @comment] do |c| %>
+	<h3><%= c.label :content %></h3>
+	<%= c.text_field :content %>
+	<%= c.submit :sleak %>
+<% end %>
+
+<%= link_to "Return Home?", posts_path %>

@@ -1,9 +1,26 @@
 class PostsController < ApplicationController
+
   def index
+    @post = Post.find_by(params[:post_id])
+    @posts = Post.last(25).reverse
+    @comment = @post.comments.build
   end
+
+  def show
+    @user = current_user
+    if current_user
+      @post = Post.find(user_id: @user).post
+      @comments = Comment.find_by(user_id: @user).post 
+      render action: index
+    else
+      redirect_to posts_path
+    end
+  end
+
   def new
     @post = Post.new
   end
+
   def create
   	@post = Post.new(post_params)
   		if @post.save
@@ -13,6 +30,7 @@ class PostsController < ApplicationController
   			flash[:alert] = "Try again, darkness my old friend."
   		end
   end
+
   def edit
   	@post = Post.find(params[:id])
   	@user = User.find(@post.user_id)
